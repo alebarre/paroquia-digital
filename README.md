@@ -31,6 +31,7 @@ Sistema de gestão para paróquias católicas desenvolvido com **Laravel 12**, c
 | **Grupos** | Criação e gestão de grupos pastorais com membros |
 | **Eventos** | Calendário de eventos da paróquia |
 | **Finanças** | Lançamento de receitas e despesas por categoria |
+| **Usuários** | Cadastro de contas com roles subordinadas (secretaria, padre) pelo Admin |
 | **Permissões** | Controle de acesso baseado em papéis (Spatie Laravel Permission) |
 
 ---
@@ -311,6 +312,8 @@ Todas as rotas abaixo exigem **autenticação** (`auth` + `verified`).
 | GET/POST | `/eventos` | `eventos.index / store` | Lista e criação de eventos |
 | GET/POST | `/financas` | `financas.index / store` | Lista e lançamento financeiro |
 | GET/PATCH/DELETE | `/profile` | `profile.edit / update / destroy` | Gerenciamento do perfil do usuário |
+| POST/DELETE | `/grupos/{grupo}/membros` | `grupos.membros.add / remove` | Adicionar e inativar fiéis nos grupos |
+| GET/POST/PUT | `/usuarios` | `usuarios.index / store / update` | Gestão de contas restrita ao Admin |
 
 Para listar todas as rotas registradas:
 
