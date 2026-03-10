@@ -660,6 +660,13 @@
                 <span class="icon">💰</span> Financeiro
             </a>
 
+            @role('admin')
+            <a href="{{ route('usuarios.index') }}"
+                class="nav-item {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">
+                <span class="icon">👤</span> Usuários
+            </a>
+            @endrole
+
             <div class="nav-section">Conta</div>
             <a href="{{ route('profile.edit') }}"
                 class="nav-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">

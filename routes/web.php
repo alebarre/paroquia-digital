@@ -7,6 +7,7 @@ use App\Http\Controllers\SacramentoController;
 use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\FinancaController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => redirect()->route('dashboard'));
@@ -34,6 +35,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Finanças
     Route::resource('financas', FinancaController::class);
+
+    // Usuários (Apenas admin)
+    Route::resource('usuarios', UsuarioController::class)
+        ->middleware('role:admin');
 
     // Perfil (Breeze)
     Route::get('/profile', [ProfileController::class , 'edit'])->name('profile.edit');
