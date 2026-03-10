@@ -26,6 +26,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Grupos
     Route::resource('grupos', GrupoController::class);
+    Route::post('grupos/{grupo}/membros', [GrupoController::class , 'addMembro'])->name('grupos.membros.add');
+    Route::delete('grupos/{grupo}/membros/{fiel}', [GrupoController::class , 'removeMembro'])->name('grupos.membros.remove');
 
     // Eventos
     Route::resource('eventos', EventoController::class);
