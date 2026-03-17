@@ -616,6 +616,53 @@
             font-size: 15px;
             color: #1e293b;
         }
+
+        /* Modal de Confirmação */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .modal-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .modal-text {
+            color: #64748b;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
     </style>
 </head>
 
@@ -652,6 +699,9 @@
             <a href="{{ route('eventos.index') }}"
                 class="nav-item {{ request()->routeIs('eventos.*') ? 'active' : '' }}">
                 <span class="icon">📅</span> Agenda e Eventos
+            </a>
+            <a href="{{ route('avisos.index') }}" class="nav-item {{ request()->routeIs('avisos.*') ? 'active' : '' }}">
+                <span class="icon">📢</span> Avisos
             </a>
 
             <div class="nav-section">Administração</div>
@@ -696,6 +746,46 @@
             @endif
 
             @yield('content')
+        </div>
+    </div>
+
+
+    @stack('scripts')
+
+    <!-- Global Confirmation Modal (AlpineJS) -->
+    <div x-data="{ 
+        show: false, 
+        title: '', 
+        formToSubmit: null,
+        confirm(event, msg) {
+            event.preventDefault();
+            this.title = msg;
+            this.formToSubmit = event.target;
+            this.show = true;
+        },
+        submit() {
+            this.show = false;
+            if (this.formToSubmit) this.formToSubmit.submit();
+        }
+    }" @confirm-action.window="confirm($event.detail.event, $event.detail.message)" id="global-confirm-handler">
+
+        <div x-show="show" x-cloak class="modal-overlay" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0">
+
+            <div @click.away="show = false" class="modal-content" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+
+                <span class="modal-icon">⚠️</span>
+                <h3 class="modal-title">Confirmação</h3>
+                <p class="modal-text" x-text="title"></p>
+
+                <div class="modal-buttons">
+                    <button @click="show = false" class="btn btn-outline">Cancelar</button>
+                    <button @click="submit()" class="btn btn-danger">Sim, Excluir</button>
+                </div>
+            </div>
         </div>
     </div>
 

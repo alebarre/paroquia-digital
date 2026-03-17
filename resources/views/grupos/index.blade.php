@@ -45,7 +45,7 @@
                             <a href="{{ route('grupos.show', $grupo) }}" class="btn btn-outline btn-sm">Ver</a>
                             <a href="{{ route('grupos.edit', $grupo) }}" class="btn btn-primary btn-sm">✏️</a>
                             <form method="POST" action="{{ route('grupos.destroy', $grupo) }}"
-                                onsubmit="return confirm('Remover este grupo?')">
+                                onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Remover este grupo?' } }))">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">🗑</button>
                             </form>

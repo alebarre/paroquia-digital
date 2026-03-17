@@ -120,7 +120,7 @@
             <div style="display:flex; align-items:center; gap:10px;">
                 <span class="badge badge-blue">{{ $membro->pivot->funcao ?? 'Membro' }}</span>
                 <form method="POST" action="{{ route('grupos.membros.remove', [$grupo, $membro]) }}"
-                    onsubmit="return confirm('Remover {{ addslashes($membro->nome_completo) }} do grupo?')">
+                    onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Remover {{ addslashes($membro->nome_completo) }} do grupo?' } }))">
                     @csrf
                     @method('DELETE')
                     <button type="submit"

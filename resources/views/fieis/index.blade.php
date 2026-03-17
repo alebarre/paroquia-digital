@@ -67,7 +67,7 @@
                             <a href="{{ route('fieis.show', $fiel) }}" class="btn btn-outline btn-sm">Ver</a>
                             <a href="{{ route('fieis.edit', $fiel) }}" class="btn btn-primary btn-sm">Editar</a>
                             <form method="POST" action="{{ route('fieis.destroy', $fiel) }}"
-                                onsubmit="return confirm('Remover este fiel?')">
+                                onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Remover este fiel?' } }))">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">🗑</button>
                             </form>

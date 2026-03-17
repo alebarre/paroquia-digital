@@ -41,7 +41,7 @@
                         <div style="display:flex; gap:6px;">
                             <a href="{{ route('eventos.edit', $evento) }}" class="btn btn-primary btn-sm">✏️</a>
                             <form method="POST" action="{{ route('eventos.destroy', $evento) }}"
-                                onsubmit="return confirm('Remover este evento?')">
+                                onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Remover este evento?' } }))">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">🗑</button>
                             </form>

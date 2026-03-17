@@ -8,6 +8,7 @@ use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\FinancaController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AvisoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => redirect()->route('dashboard'));
@@ -32,6 +33,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Eventos
     Route::resource('eventos', EventoController::class);
+
+    // Avisos
+    Route::resource('avisos', AvisoController::class);
 
     // Finanças
     Route::resource('financas', FinancaController::class);

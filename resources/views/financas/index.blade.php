@@ -89,7 +89,7 @@
                         <div style="display:flex; gap:6px;">
                             <a href="{{ route('financas.edit', $f) }}" class="btn btn-primary btn-sm">✏️</a>
                             <form method="POST" action="{{ route('financas.destroy', $f) }}"
-                                onsubmit="return confirm('Remover este lançamento?')">
+                                onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Remover este lançamento?' } }))">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">🗑</button>
                             </form>

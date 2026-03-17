@@ -64,7 +64,7 @@
                             <a href="{{ route('sacramentos.certidao', $sac) }}" class="btn btn-success btn-sm">📄
                                 PDF</a>
                             <form method="POST" action="{{ route('sacramentos.destroy', $sac) }}"
-                                onsubmit="return confirm('Remover este registro?')">
+                                onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Remover este registro?' } }))">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">🗑</button>
                             </form>

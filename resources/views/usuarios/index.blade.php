@@ -63,7 +63,7 @@
                                 Editar</a>
                             @if($usuario->id !== Auth::id())
                             <form method="POST" action="{{ route('usuarios.destroy', $usuario) }}"
-                                onsubmit="return confirm('Excluir {{ addslashes($usuario->name) }}?')">
+                                onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Excluir {{ addslashes($usuario->name) }}?' } }))">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">🗑 Excluir</button>
