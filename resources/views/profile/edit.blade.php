@@ -9,7 +9,7 @@
         <div class="profile-aside">
             <div class="card profile-card">
                 <div class="profile-header">
-                    <div class="profile-avatar-wrapper">
+                    <div class="profile-avatar-wrapper" x-data="{ showUploadInfo: false }">
                         @if($user->photo)
                         <img src="{{ asset('storage/' . $user->photo) }}" alt="{{ $user->name }}"
                             class="profile-main-avatar" id="avatar-preview">
@@ -17,9 +17,32 @@
                         <div class="profile-main-initials" id="avatar-preview-initials">{{
                             strtoupper(substr($user->name, 0, 1)) }}</div>
                         @endif
-                        <label for="photo-upload" class="avatar-edit-btn" title="Alterar foto">
+                        <button type="button" @click="showUploadInfo = true" class="avatar-edit-btn"
+                            title="Alterar foto">
                             <i class="fa-solid fa-camera"></i>
-                        </label>
+                        </button>
+
+                        <!-- Modal de Informação de Upload -->
+                        <div x-show="showUploadInfo" x-cloak class="modal-overlay">
+                            <div class="modal-content" @click.away="showUploadInfo = false" style="text-align: left;">
+                                <span class="modal-icon text-primary" style="text-align: center; display: block;"><i
+                                        class="fa-solid fa-image"></i></span>
+                                <h3 class="modal-title" style="text-align: center;">Atualizar Foto</h3>
+                                <p class="modal-text">
+                                    Para um melhor resultado, utilize uma imagem quadrada. <br><br>
+                                    <strong>Formatos suportados:</strong> JPG, PNG, GIF.<br>
+                                    <strong>Tamanho máximo:</strong> 2MB.
+                                </p>
+                                <div class="modal-buttons">
+                                    <button type="button" @click="showUploadInfo = false"
+                                        class="btn btn-outline">Cancelar</button>
+                                    <label for="photo-upload" @click="showUploadInfo = false" class="btn btn-primary"
+                                        style="cursor: pointer;">
+                                        Escolher Arquivo
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <h2 class="profile-name">{{ $user->name }}</h2>
                     <p class="profile-role">
@@ -56,6 +79,7 @@
 
                     <input type="file" name="photo" id="photo-upload" style="display: none;"
                         onchange="previewImage(this)">
+                    @error('photo') <div class="alert alert-error mt-2">{{ $message }}</div> @enderror
 
                     <div class="form-grid">
                         <div class="form-group">

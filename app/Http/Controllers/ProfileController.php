@@ -27,13 +27,19 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
-        $user->fill($request->validated());
+
+        // Remove photo from validated data to handle it manually
+        $data = $request->validated();
+        unset($data['photo']);
+
+        $user->fill($data);
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
 
         if ($request->hasFile('photo')) {
+            // \Illuminate\Support\Facades\Log::info('Photo received: ' . $request->file('photo')->getClientOriginalName());
             // Deletar foto antiga se existir
             if ($user->photo) {
                 \Illuminate\Support\Facades\Storage::disk('public')->delete($user->photo);
