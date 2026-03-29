@@ -31,7 +31,9 @@ Sistema de gestão para paróquias católicas desenvolvido com **Laravel 12**, c
 | **Grupos** | Criação e gestão de grupos pastorais com membros |
 | **Eventos** | Calendário de eventos da paróquia |
 | **Finanças** | Lançamento de receitas e despesas por categoria |
-| **Usuários** | Cadastro de contas com roles subordinadas (secretaria, padre) pelo Admin |
+| **Usuários** | Gestão de contas restrita ao Admin e Painel de Perfil Pessoal |
+| **Perfil** | Atualização de dados pessoais e upload de foto de perfil |
+| **Interface** | Modernizada com ícones Font Awesome 6 e layout responsivo |
 | **Permissões** | Controle de acesso baseado em papéis (Spatie Laravel Permission) |
 
 ---
@@ -51,6 +53,8 @@ Sistema de gestão para paróquias católicas desenvolvido com **Laravel 12**, c
 - [Alpine.js](https://alpinejs.dev) `^3.x`
 - [Vite](https://vite.dev) `^7.x` + [laravel-vite-plugin](https://github.com/laravel/vite-plugin)
 - [Axios](https://axios-http.com) `^1.x`
+- [Font Awesome 6](https://fontawesome.com) — ícones profissionais e consistentes
+
 
 **Banco de Dados**
 - SQLite *(padrão, zero configuração)*
@@ -311,7 +315,7 @@ Todas as rotas abaixo exigem **autenticação** (`auth` + `verified`).
 | GET/POST | `/grupos` | `grupos.index / store` | Lista e criação de grupos |
 | GET/POST | `/eventos` | `eventos.index / store` | Lista e criação de eventos |
 | GET/POST | `/financas` | `financas.index / store` | Lista e lançamento financeiro |
-| GET/PATCH/DELETE | `/profile` | `profile.edit / update / destroy` | Gerenciamento do perfil do usuário |
+| GET/PATCH/DELETE | `/profile` | `profile.edit / update / destroy` | Gestão do perfil (dados e foto) |
 | POST/DELETE | `/grupos/{grupo}/membros` | `grupos.membros.add / remove` | Adicionar e inativar fiéis nos grupos |
 | GET/POST/PUT | `/usuarios` | `usuarios.index / store / update` | Gestão de contas restrita ao Admin |
 
@@ -342,6 +346,7 @@ php artisan route:list
 | `create_financas_table` | `financas` | Lançamentos financeiros |
 | `create_membros_grupos_table` | `membros_grupos` | Membros de grupos (pivot) |
 | `create_missas_table` | `missas` | Registro de missas |
+| `add_photo_to_users_table` | `users` | Adiciona campo de foto de perfil |
 
 ### Executar as migrations
 
