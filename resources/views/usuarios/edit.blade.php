@@ -6,7 +6,7 @@
 @section('content')
 <div class="page-header">
     <div>
-        <div class="page-title">✏️ Editar Usuário</div>
+        <div class="page-title"><i class="fa-solid fa-user-pen"></i> Editar Usuário</div>
         <div class="page-subtitle">{{ $usuario->name }}</div>
     </div>
     <a href="{{ route('usuarios.index') }}" class="btn btn-outline">← Voltar</a>
@@ -56,8 +56,8 @@
                     <option value="{{ $role->name }}" {{ ($usuario->hasRole($role->name) || old('role') === $role->name)
                         ? 'selected' : '' }}>
                         {{ match($role->name) {
-                        'secretaria' => '📋 Secretaria — gerencia fiéis, sacramentos e eventos',
-                        'padre' => '✝️ Padre — visualização geral e sacramentos',
+                        'secretaria' => 'Secretaria — gerencia fiéis, sacramentos e eventos',
+                        'padre' => 'Padre — visualização geral e sacramentos',
                         default => ucfirst($role->name),
                         } }}
                     </option>
@@ -70,7 +70,8 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">💾 Salvar Alterações</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar
+                Alterações</button>
             <a href="{{ route('usuarios.index') }}" class="btn btn-outline">Cancelar</a>
         </div>
     </form>

@@ -31,8 +31,8 @@
             <div class="form-group">
                 <label>Tipo *</label>
                 <select name="tipo" required>
-                    @foreach(['missa'=>'⛪ Missa','retiro'=>'🏕️ Retiro','novena'=>'🕯️ Novena','quermesse'=>'🎪
-                    Quermesse','reuniao'=>'👥 Reunião','outro'=>'📌 Outro'] as $val => $lbl)
+                    @foreach(['missa'=>'Missa','retiro'=>'Retiro','novena'=>'Novena','quermesse'=>'Quermesse','reuniao'=>'Reunião','outro'=>'Outro']
+                    as $val => $lbl)
                     <option value="{{ $val }}" {{ old('tipo', $evento->tipo) == $val ? 'selected' : '' }}>{{ $lbl }}
                     </option>
                     @endforeach
@@ -59,7 +59,8 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">💾 Salvar Alterações</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Salvar
+                Alterações</button>
             <a href="{{ route('eventos.index') }}" class="btn btn-outline">Cancelar</a>
         </div>
     </form>

@@ -14,13 +14,13 @@
 
 <div class="card">
     <form method="GET" class="search-bar">
-        <input type="text" name="search" placeholder="🔍 Buscar por nome, CPF ou e-mail..."
-            value="{{ request('search') }}" style="min-width:280px;">
+        <input type="text" name="search" placeholder="Busque por nome, CPF ou e-mail..." value="{{ request('search') }}"
+            style="min-width:280px;">
         <select name="status">
             <option value="">Todos os status</option>
-            <option value="ativo" {{ request('status')=='ativo' ? 'selected' : '' }}>✅ Ativo</option>
-            <option value="inativo" {{ request('status')=='inativo' ? 'selected' : '' }}>⏸ Inativo</option>
-            <option value="falecido" {{ request('status')=='falecido' ? 'selected' : '' }}>🕊 Falecido</option>
+            <option value="ativo" {{ request('status')=='ativo' ? 'selected' : '' }}>Ativo</option>
+            <option value="inativo" {{ request('status')=='inativo' ? 'selected' : '' }}>Inativo</option>
+            <option value="falecido" {{ request('status')=='falecido' ? 'selected' : '' }}>Falecido</option>
         </select>
         <button type="submit" class="btn btn-primary">Filtrar</button>
         <a href="{{ route('fieis.index') }}" class="btn btn-outline">Limpar</a>
@@ -55,21 +55,24 @@
                     <td>{{ $fiel->bairro ?? '—' }}</td>
                     <td>
                         @if($fiel->status === 'ativo')
-                        <span class="badge badge-green">✅ Ativo</span>
+                        <span class="badge badge-green"><i class="fa-solid fa-circle-check"></i> Ativo</span>
                         @elseif($fiel->status === 'inativo')
-                        <span class="badge badge-gray">⏸ Inativo</span>
+                        <span class="badge badge-gray"><i class="fa-solid fa-circle-pause"></i> Inativo</span>
                         @else
-                        <span class="badge badge-gray">🕊 Falecido</span>
+                        <span class="badge badge-gray"><i class="fa-solid fa-dove"></i> Falecido</span>
                         @endif
                     </td>
                     <td>
                         <div style="display:flex; gap:6px;">
-                            <a href="{{ route('fieis.show', $fiel) }}" class="btn btn-outline btn-sm">Ver</a>
-                            <a href="{{ route('fieis.edit', $fiel) }}" class="btn btn-primary btn-sm">Editar</a>
+                            <a href="{{ route('fieis.show', $fiel) }}" class="btn btn-outline btn-sm"><i
+                                    class="fa-solid fa-eye"></i> Ver</a>
+                            <a href="{{ route('fieis.edit', $fiel) }}" class="btn btn-primary btn-sm"><i
+                                    class="fa-solid fa-pen-to-square"></i> Editar</a>
                             <form method="POST" action="{{ route('fieis.destroy', $fiel) }}"
                                 onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Remover este fiel?' } }))">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">🗑</button>
+                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                        class="fa-solid fa-trash-can"></i> Remover</button>
                             </form>
                         </div>
                     </td>

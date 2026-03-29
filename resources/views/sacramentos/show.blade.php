@@ -10,8 +10,10 @@
         <div class="page-subtitle">{{ $sacramento->fiel->nome_completo }}</div>
     </div>
     <div style="display:flex; gap:10px;">
-        <a href="{{ route('sacramentos.certidao', $sacramento) }}" class="btn btn-success">📄 Baixar Certidão PDF</a>
-        <a href="{{ route('sacramentos.edit', $sacramento) }}" class="btn btn-primary">✏️ Editar</a>
+        <a href="{{ route('sacramentos.certidao', $sacramento) }}" class="btn btn-success"><i
+                class="fa-solid fa-file-pdf"></i> Baixar Certidão PDF</a>
+        <a href="{{ route('sacramentos.edit', $sacramento) }}" class="btn btn-primary"><i
+                class="fa-solid fa-pen-to-square"></i> Editar</a>
         <a href="{{ route('sacramentos.index') }}" class="btn btn-outline">← Voltar</a>
     </div>
 </div>

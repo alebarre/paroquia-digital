@@ -10,7 +10,8 @@
         <div class="page-subtitle">{{ $grupo->membrosAtivos->count() }} membro(s) ativo(s)</div>
     </div>
     <div style="display:flex; gap:10px;">
-        <a href="{{ route('grupos.edit', $grupo) }}" class="btn btn-primary">✏️ Editar</a>
+        <a href="{{ route('grupos.edit', $grupo) }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i>
+            Editar</a>
         <a href="{{ route('grupos.index') }}" class="btn btn-outline">← Voltar</a>
     </div>
 </div>
@@ -31,12 +32,13 @@
 
 <div style="display:grid; grid-template-columns: 1fr 2fr; gap:24px;">
     <div class="card">
-        <div class="card-title" style="margin-bottom:16px;">📋 Informações</div>
+        <div class="card-title" style="margin-bottom:16px;"><i
+                class="fa-solid fa-clipboard-list text-blue-800 mr-2"></i> Informações</div>
         <div class="detail-item" style="margin-bottom:12px;">
             <div class="detail-label">Status</div>
             <div class="detail-value">
-                @if($grupo->ativo) <span class="badge badge-green">✅ Ativo</span>
-                @else <span class="badge badge-gray">⏸ Inativo</span> @endif
+                @if($grupo->ativo) <span class="badge badge-green"><i class="fa-solid fa-circle-check"></i> Ativo</span>
+                @else <span class="badge badge-gray"><i class="fa-solid fa-circle-pause"></i> Inativo</span> @endif
             </div>
         </div>
         <div class="detail-item" style="margin-bottom:12px;">
@@ -66,7 +68,7 @@
     <div class="card">
         {{-- Header do card com botão de adicionar --}}
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-            <div class="card-title">👥 Membros Ativos</div>
+            <div class="card-title"><i class="fa-solid fa-users text-blue-900 mr-2"></i> Membros Ativos</div>
             <button onclick="document.getElementById('form-add-membro').classList.toggle('hidden')"
                 class="btn btn-primary" style="font-size:13px; padding:6px 14px;">
                 + Adicionar Membro

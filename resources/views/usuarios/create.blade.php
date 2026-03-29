@@ -6,7 +6,7 @@
 @section('content')
 <div class="page-header">
     <div>
-        <div class="page-title">➕ Novo Usuário</div>
+        <div class="page-title"><i class="fa-solid fa-user-plus"></i> Novo Usuário</div>
         <div class="page-subtitle">Cadastrar usuário com perfil secretaria ou padre</div>
     </div>
     <a href="{{ route('usuarios.index') }}" class="btn btn-outline">← Voltar</a>
@@ -56,8 +56,8 @@
                     @foreach($roles as $role)
                     <option value="{{ $role->name }}" {{ old('role')===$role->name ? 'selected' : '' }}>
                         {{ match($role->name) {
-                        'secretaria' => '📋 Secretaria — gerencia fiéis, sacramentos e eventos',
-                        'padre' => '✝️ Padre — visualização geral e sacramentos',
+                        'secretaria' => 'Secretaria — gerencia fiéis, sacramentos e eventos',
+                        'padre' => 'Padre — visualização geral e sacramentos',
                         default => ucfirst($role->name),
                         } }}
                     </option>
@@ -70,7 +70,7 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">💾 Criar Usuário</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-user-check"></i> Criar Usuário</button>
             <a href="{{ route('usuarios.index') }}" class="btn btn-outline">Cancelar</a>
         </div>
     </form>

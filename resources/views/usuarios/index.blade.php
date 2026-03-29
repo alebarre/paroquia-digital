@@ -6,7 +6,7 @@
 @section('content')
 <div class="page-header">
     <div>
-        <div class="page-title">👤 Usuários do Sistema</div>
+        <div class="page-title"><i class="fa-solid fa-users-gear text-blue-900 mr-2"></i> Usuários do Sistema</div>
         <div class="page-subtitle">{{ $usuarios->count() }} usuário(s) cadastrado(s)</div>
     </div>
     <a href="{{ route('usuarios.create') }}" class="btn btn-primary">+ Novo Usuário</a>
@@ -44,13 +44,13 @@
                         default => 'badge-gray',
                         };
                         $label = match($role->name) {
-                        'admin' => '🔑 Admin',
-                        'secretaria' => '📋 Secretaria',
-                        'padre' => '✝️ Padre',
+                        'admin' => '<i class="fa-solid fa-key"></i> Admin',
+                        'secretaria' => '<i class="fa-solid fa-clipboard-list"></i> Secretaria',
+                        'padre' => '<i class="fa-solid fa-cross"></i> Padre',
                         default => $role->name,
                         };
                         @endphp
-                        <span class="badge {{ $badgeClass }}">{{ $label }}</span>
+                        <span class="badge {{ $badgeClass }}">{!! $label !!}</span>
                         @endforeach
                     </td>
                     <td style="color:#64748b; font-size:13px;">
@@ -59,14 +59,15 @@
                     <td style="text-align:right;">
                         <div style="display:flex; gap:8px; justify-content:flex-end;">
                             @unless($usuario->hasRole('admin'))
-                            <a href="{{ route('usuarios.edit', $usuario) }}" class="btn btn-outline btn-sm">✏️
-                                Editar</a>
+                            <a href="{{ route('usuarios.edit', $usuario) }}" class="btn btn-outline btn-sm"><i
+                                    class="fa-solid fa-pen-to-square"></i> Editar</a>
                             @if($usuario->id !== Auth::id())
                             <form method="POST" action="{{ route('usuarios.destroy', $usuario) }}"
                                 onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Excluir {{ addslashes($usuario->name) }}?' } }))">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">🗑 Excluir</button>
+                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                        class="fa-solid fa-trash-can"></i> Remover</button>
                             </form>
                             @endif
                             @else

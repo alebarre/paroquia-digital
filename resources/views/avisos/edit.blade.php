@@ -58,7 +58,7 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">📢 Atualizar Aviso</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-bullhorn"></i> Atualizar Aviso </button>
             <a href="{{ route('avisos.index') }}" class="btn btn-outline">Cancelar</a>
         </div>
     </form>

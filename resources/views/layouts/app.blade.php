@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root {
@@ -328,8 +329,9 @@
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 18px;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 16px;
             border-radius: 8px;
             font-size: 14px;
             font-weight: 500;
@@ -337,6 +339,7 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.2s;
+            line-height: normal;
         }
 
         .btn-primary {
@@ -377,8 +380,13 @@
         }
 
         .btn-sm {
-            padding: 5px 12px;
+            padding: 5px 10px;
             font-size: 12px;
+            gap: 4px;
+        }
+
+        .btn i {
+            font-size: 0.9em;
         }
 
         .btn-success {
@@ -680,51 +688,52 @@
         <nav class="sidebar-nav">
             <div class="nav-section">Principal</div>
             <a href="{{ route('dashboard') }}" class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <span class="icon">🏠</span> Dashboard
+                <span class="icon"><i class="fa-solid fa-house"></i></span> Dashboard
             </a>
 
             <div class="nav-section">Paroquianos</div>
             <a href="{{ route('fieis.index') }}" class="nav-item {{ request()->routeIs('fieis.*') ? 'active' : '' }}">
-                <span class="icon">👥</span> Fiéis
+                <span class="icon"><i class="fa-solid fa-users"></i></span> Fiéis
             </a>
             <a href="{{ route('sacramentos.index') }}"
                 class="nav-item {{ request()->routeIs('sacramentos.*') ? 'active' : '' }}">
-                <span class="icon">✝️</span> Sacramentos
+                <span class="icon"><i class="fa-solid fa-cross"></i></span> Sacramentos
             </a>
 
             <div class="nav-section">Comunidade</div>
             <a href="{{ route('grupos.index') }}" class="nav-item {{ request()->routeIs('grupos.*') ? 'active' : '' }}">
-                <span class="icon">🤝</span> Grupos e Pastorais
+                <span class="icon"><i class="fa-solid fa-people-group"></i></span> Grupos e Pastorais
             </a>
             <a href="{{ route('eventos.index') }}"
                 class="nav-item {{ request()->routeIs('eventos.*') ? 'active' : '' }}">
-                <span class="icon">📅</span> Agenda e Eventos
+                <span class="icon"><i class="fa-solid fa-calendar-days"></i></span> Agenda e Eventos
             </a>
             <a href="{{ route('avisos.index') }}" class="nav-item {{ request()->routeIs('avisos.*') ? 'active' : '' }}">
-                <span class="icon">📢</span> Avisos
+                <span class="icon"><i class="fa-solid fa-bullhorn"></i></span> Avisos
             </a>
 
             <div class="nav-section">Administração</div>
             <a href="{{ route('financas.index') }}"
                 class="nav-item {{ request()->routeIs('financas.*') ? 'active' : '' }}">
-                <span class="icon">💰</span> Financeiro
+                <span class="icon"><i class="fa-solid fa-file-invoice-dollar"></i></span> Financeiro
             </a>
 
             @role('admin')
             <a href="{{ route('usuarios.index') }}"
                 class="nav-item {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">
-                <span class="icon">👤</span> Usuários
+                <span class="icon"><i class="fa-solid fa-user-lock"></i></span> Usuários
             </a>
             @endrole
 
             <div class="nav-section">Conta</div>
             <a href="{{ route('profile.edit') }}"
                 class="nav-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
-                <span class="icon">⚙️</span> Perfil
+                <span class="icon"><i class="fa-solid fa-user-gear"></i></span> Perfil
             </a>
             <form method="POST" action="{{ route('logout') }}" class="logout-form">
                 @csrf
-                <button type="submit"><span class="icon">🚪</span> Sair</button>
+                <button type="submit"><span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                    Sair</button>
             </form>
         </nav>
     </div>
@@ -733,16 +742,23 @@
         <div class="topbar">
             <div class="topbar-title">@yield('page_title', 'Dashboard')</div>
             <div class="topbar-user">
-                <div class="user-avatar">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
+                <div class="user-avatar">
+                    @if(Auth::user()->photo)
+                    <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="{{ Auth::user()->name }}"
+                        style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    @else
+                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                    @endif
+                </div>
                 <span class="user-name">{{ Auth::user()->name }}</span>
             </div>
         </div>
         <div class="content">
             @if (session('success'))
-            <div class="alert alert-success">✅ {{ session('success') }}</div>
+            <div class="alert alert-success"><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</div>
             @endif
             @if (session('error'))
-            <div class="alert alert-error">❌ {{ session('error') }}</div>
+            <div class="alert alert-error"><i class="fa-solid fa-circle-xmark"></i> {{ session('error') }}</div>
             @endif
 
             @yield('content')
@@ -777,7 +793,7 @@
             <div @click.away="show = false" class="modal-content" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
 
-                <span class="modal-icon">⚠️</span>
+                <span class="modal-icon text-yellow-500"><i class="fa-solid fa-triangle-exclamation"></i></span>
                 <h3 class="modal-title">Confirmação</h3>
                 <p class="modal-text" x-text="title"></p>
 

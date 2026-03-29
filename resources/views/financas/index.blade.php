@@ -15,7 +15,7 @@
 {{-- Resumo --}}
 <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
     <div class="stat-card" style="border-left-color:#16a34a;">
-        <div class="stat-icon">⬆️</div>
+        <div class="stat-icon"><i class="fa-solid fa-arrow-trend-up text-green-600"></i></div>
         <div>
             <div class="stat-value" style="color:#16a34a; font-size:20px;">R$ {{ number_format($totalEntradas, 2, ',',
                 '.') }}</div>
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="stat-card" style="border-left-color:#dc2626;">
-        <div class="stat-icon">⬇️</div>
+        <div class="stat-icon"><i class="fa-solid fa-arrow-trend-down text-red-600"></i></div>
         <div>
             <div class="stat-value" style="color:#dc2626; font-size:20px;">R$ {{ number_format($totalSaidas, 2, ',',
                 '.') }}</div>
@@ -31,7 +31,8 @@
         </div>
     </div>
     <div class="stat-card" style="border-left-color:{{ $saldo >= 0 ? '#16a34a' : '#dc2626' }};">
-        <div class="stat-icon">💰</div>
+        <div class="stat-icon {{ $saldo >= 0 ? 'text-green-600' : 'text-red-600' }}"><i class="fa-solid fa-wallet"></i>
+        </div>
         <div>
             <div class="stat-value" style="color:{{ $saldo >= 0 ? '#16a34a' : '#dc2626' }}; font-size:20px;">
                 R$ {{ number_format(abs($saldo), 2, ',', '.') }}
@@ -45,8 +46,8 @@
     <form method="GET" class="search-bar">
         <select name="tipo">
             <option value="">Todos os tipos</option>
-            <option value="entrada" {{ request('tipo')=='entrada' ? 'selected' : '' }}>⬆ Entradas</option>
-            <option value="saida" {{ request('tipo')=='saida' ? 'selected' : '' }}>⬇ Saídas</option>
+            <option value="entrada" {{ request('tipo')=='entrada' ? 'selected' : '' }}>Entradas</option>
+            <option value="saida" {{ request('tipo')=='saida' ? 'selected' : '' }}>Saídas</option>
         </select>
         <select name="mes">
             <option value="">Todos os meses</option>
@@ -87,11 +88,13 @@
                     </td>
                     <td>
                         <div style="display:flex; gap:6px;">
-                            <a href="{{ route('financas.edit', $f) }}" class="btn btn-primary btn-sm">✏️</a>
+                            <a href="{{ route('financas.edit', $f) }}" class="btn btn-primary btn-sm"><i
+                                    class="fa-solid fa-pen-to-square"></i> Editar</a>
                             <form method="POST" action="{{ route('financas.destroy', $f) }}"
                                 onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Remover este lançamento?' } }))">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">🗑</button>
+                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                        class="fa-solid fa-trash-can"></i> Remover</button>
                             </form>
                         </div>
                     </td>

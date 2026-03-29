@@ -95,7 +95,8 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">✝️ Registrar Sacramento</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-cross"></i> Registrar
+                Sacramento</button>
             <a href="{{ route('sacramentos.index') }}" class="btn btn-outline">Cancelar</a>
         </div>
     </form>

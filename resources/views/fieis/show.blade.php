@@ -10,8 +10,10 @@
         <div class="page-subtitle">Detalhes do fiel</div>
     </div>
     <div style="display:flex; gap:10px;">
-        <a href="{{ route('fieis.edit', $fiel) }}" class="btn btn-primary">✏️ Editar</a>
-        <a href="{{ route('sacramentos.create', ['fiel_id' => $fiel->id]) }}" class="btn btn-accent">✝️ + Sacramento</a>
+        <a href="{{ route('fieis.edit', $fiel) }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i>
+            Editar</a>
+        <a href="{{ route('sacramentos.create', ['fiel_id' => $fiel->id]) }}" class="btn btn-accent"><i
+                class="fa-solid fa-cross"></i> + Sacramento</a>
         <a href="{{ route('fieis.index') }}" class="btn btn-outline">← Voltar</a>
     </div>
 </div>
@@ -25,7 +27,7 @@
             @else
             <div style="width:120px; height:120px; border-radius:50%; background:#e2e8f0;
                      display:flex; align-items:center; justify-content:center;
-                     font-size:48px; margin:0 auto 16px; color:#94a3b8;">👤</div>
+                     font-size:48px; margin:0 auto 16px; color:#94a3b8;"><i class="fa-solid fa-user"></i></div>
             @endif
             <div style="font-size:18px; font-weight:700; color:#1a3a5c;">{{ $fiel->nome_completo }}</div>
             @if($fiel->data_nascimento)
@@ -33,14 +35,17 @@
                 ({{ $fiel->idade }} anos)</div>
             @endif
             <div style="margin-top:12px;">
-                @if($fiel->status === 'ativo') <span class="badge badge-green">✅ Ativo</span>
-                @elseif($fiel->status === 'inativo') <span class="badge badge-gray">⏸ Inativo</span>
-                @else <span class="badge badge-gray">🕊 Falecido</span> @endif
+                @if($fiel->status === 'ativo') <span class="badge badge-green"><i class="fa-solid fa-circle-check"></i>
+                    Ativo</span>
+                @elseif($fiel->status === 'inativo') <span class="badge badge-gray"><i
+                        class="fa-solid fa-circle-pause"></i> Inativo</span>
+                @else <span class="badge badge-gray"><i class="fa-solid fa-dove"></i> Falecido</span> @endif
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title" style="margin-bottom:16px;">📞 Contato</div>
+            <div class="card-title" style="margin-bottom:16px;"><i class="fa-solid fa-phone text-blue-800 mr-2"></i>
+                Contato</div>
             <div class="detail-item" style="margin-bottom:12px;">
                 <div class="detail-label">Telefone</div>
                 <div class="detail-value">{{ $fiel->telefone ?? '—' }}</div>
@@ -64,7 +69,7 @@
         {{-- Sacramentos --}}
         <div class="card">
             <div class="card-header">
-                <div class="card-title">✝️ Sacramentos</div>
+                <div class="card-title"><i class="fa-solid fa-cross text-blue-900 mr-2"></i> Sacramentos</div>
                 <a href="{{ route('sacramentos.create', ['fiel_id' => $fiel->id]) }}" class="btn btn-primary btn-sm">+
                     Registrar</a>
             </div>
@@ -78,7 +83,8 @@
                 </div>
                 <div style="display:flex; gap:6px;">
                     <a href="{{ route('sacramentos.show', $sac) }}" class="btn btn-outline btn-sm">Ver</a>
-                    <a href="{{ route('sacramentos.certidao', $sac) }}" class="btn btn-success btn-sm">📄 PDF</a>
+                    <a href="{{ route('sacramentos.certidao', $sac) }}" class="btn btn-success btn-sm"><i
+                            class="fa-solid fa-file-pdf"></i> PDF</a>
                 </div>
             </div>
             @empty
@@ -89,7 +95,8 @@
         {{-- Grupos --}}
         <div class="card">
             <div class="card-header">
-                <div class="card-title">🤝 Grupos e Pastorais</div>
+                <div class="card-title"><i class="fa-solid fa-people-group text-green-700 mr-2"></i> Grupos e Pastorais
+                </div>
             </div>
             @forelse($fiel->grupos as $grupo)
             <div

@@ -66,7 +66,7 @@
                     <option value="pix" {{ old('forma_pagamento')=='pix' ? 'selected' : '' }}>📱 PIX</option>
                     <option value="transferencia" {{ old('forma_pagamento')=='transferencia' ? 'selected' :'' }}>🏦
                         Transferência</option>
-                    <option value="cheque" {{ old('forma_pagamento')=='cheque' ? 'selected' : '' }}>📄 Cheque</option>
+                    <option value="cheque" {{ old('forma_pagamento')=='cheque' ? 'selected' : '' }}>Cheque</option>
                 </select>
             </div>
             <div class="form-group">
@@ -86,7 +86,8 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">💾 Salvar Lançamento</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar
+                Lançamento</button>
             <a href="{{ route('financas.index') }}" class="btn btn-outline">Cancelar</a>
         </div>
     </form>

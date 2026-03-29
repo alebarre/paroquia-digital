@@ -62,8 +62,8 @@
             <div class="form-group">
                 <label>Status</label>
                 <select name="ativo">
-                    <option value="1" {{ old('ativo', '1' )=='1' ? 'selected' : '' }}>✅ Ativo</option>
-                    <option value="0" {{ old('ativo')=='0' ? 'selected' : '' }}>⏸ Inativo</option>
+                    <option value="1" {{ old('ativo', '1' )=='1' ? 'selected' : '' }}>Ativo</option>
+                    <option value="0" {{ old('ativo')=='0' ? 'selected' : '' }}>Inativo</option>
                 </select>
             </div>
             <div class="form-group" style="grid-column:span 2;">
@@ -74,7 +74,7 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">🤝 Salvar Grupo</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-people-group"></i> Salvar Grupo</button>
             <a href="{{ route('grupos.index') }}" class="btn btn-outline">Cancelar</a>
         </div>
     </form>

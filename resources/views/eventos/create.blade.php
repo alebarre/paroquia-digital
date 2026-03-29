@@ -34,12 +34,12 @@
                 <label>Tipo *</label>
                 <select name="tipo" required>
                     <option value="">— Selecione —</option>
-                    <option value="missa" {{ old('tipo')=='missa' ? 'selected' :'' }}>⛪ Missa</option>
-                    <option value="retiro" {{ old('tipo')=='retiro' ? 'selected' :'' }}>🏕️ Retiro</option>
-                    <option value="novena" {{ old('tipo')=='novena' ? 'selected' :'' }}>🕯️ Novena</option>
-                    <option value="quermesse" {{ old('tipo')=='quermesse' ? 'selected' :'' }}>🎪 Quermesse</option>
-                    <option value="reuniao" {{ old('tipo')=='reuniao' ? 'selected' :'' }}>👥 Reunião</option>
-                    <option value="outro" {{ old('tipo')=='outro' ? 'selected' :'' }}>📌 Outro</option>
+                    <option value="missa" {{ old('tipo')=='missa' ? 'selected' :'' }}>Missa</option>
+                    <option value="retiro" {{ old('tipo')=='retiro' ? 'selected' :'' }}>Retiro</option>
+                    <option value="novena" {{ old('tipo')=='novena' ? 'selected' :'' }}>Novena</option>
+                    <option value="quermesse" {{ old('tipo')=='quermesse' ? 'selected' :'' }}>Quermesse</option>
+                    <option value="reuniao" {{ old('tipo')=='reuniao' ? 'selected' :'' }}>Reunião</option>
+                    <option value="outro" {{ old('tipo')=='outro' ? 'selected' :'' }}>Outro</option>
                 </select>
             </div>
             <div class="form-group">
@@ -62,7 +62,8 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">📅 Salvar Evento</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Salvar
+                Evento</button>
             <a href="{{ route('eventos.index') }}" class="btn btn-outline">Cancelar</a>
         </div>
     </form>

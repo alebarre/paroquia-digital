@@ -14,7 +14,7 @@
 
 <div class="card">
     <form method="GET" class="search-bar">
-        <input type="text" name="search" placeholder="🔍 Buscar por fiel..." value="{{ request('search') }}"
+        <input type="text" name="search" placeholder="Busque por fiel..." value="{{ request('search') }}"
             style="min-width:240px;">
         <select name="tipo">
             <option value="">Todos os tipos</option>
@@ -60,13 +60,15 @@
                     <td>{{ $sac->local ?? '—' }}</td>
                     <td>
                         <div style="display:flex; gap:6px;">
-                            <a href="{{ route('sacramentos.show', $sac) }}" class="btn btn-outline btn-sm">Ver</a>
-                            <a href="{{ route('sacramentos.certidao', $sac) }}" class="btn btn-success btn-sm">📄
-                                PDF</a>
+                            <a href="{{ route('sacramentos.show', $sac) }}" class="btn btn-outline btn-sm"><i
+                                    class="fa-solid fa-eye"></i> Ver</a>
+                            <a href="{{ route('sacramentos.certidao', $sac) }}" class="btn btn-success btn-sm"><i
+                                    class="fa-solid fa-file-pdf"></i> PDF</a>
                             <form method="POST" action="{{ route('sacramentos.destroy', $sac) }}"
                                 onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Remover este registro?' } }))">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">🗑</button>
+                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                        class="fa-solid fa-trash-can"></i> Remover</button>
                             </form>
                         </div>
                     </td>

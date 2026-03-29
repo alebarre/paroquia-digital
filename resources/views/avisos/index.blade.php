@@ -41,11 +41,13 @@
                     <td>{{ \Carbon\Carbon::parse($aviso->dataCadastro)->format('d/m/Y') }}</td>
                     <td>
                         <div style="display:flex; gap:6px;">
-                            <a href="{{ route('avisos.edit', $aviso) }}" class="btn btn-primary btn-sm">✏️</a>
+                            <a href="{{ route('avisos.edit', $aviso) }}" class="btn btn-primary btn-sm"><i
+                                    class="fa-solid fa-pen-to-square"></i> Editar</a>
                             <form method="POST" action="{{ route('avisos.destroy', $aviso) }}"
                                 onsubmit="window.dispatchEvent(new CustomEvent('confirm-action', { detail: { event: event, message: 'Remover este aviso?' } }))">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">🗑</button>
+                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                        class="fa-solid fa-trash-can"></i> Remover</button>
                             </form>
                         </div>
                     </td>
