@@ -43,7 +43,7 @@ class FielController extends Controller
         $validated = $request->validate([
             'nome' => 'required|string|max:100',
             'sobrenome' => 'required|string|max:100',
-            'cpf' => 'nullable|string|max:14|unique:fieis,cpf',
+            'cpf' => 'required|string|max:14|unique:fieis,cpf',
             'data_nascimento' => 'nullable|date',
             'sexo' => 'nullable|in:M,F',
             'estado_civil' => 'nullable|string',
@@ -85,7 +85,7 @@ class FielController extends Controller
         $validated = $request->validate([
             'nome' => 'required|string|max:100',
             'sobrenome' => 'required|string|max:100',
-            'cpf' => 'nullable|string|max:14|unique:fieis,cpf,' . $fiel->id,
+            'cpf' => 'required|string|max:14|unique:fieis,cpf,' . $fiel->id,
             'data_nascimento' => 'nullable|date',
             'sexo' => 'nullable|in:M,F',
             'estado_civil' => 'nullable|string',
